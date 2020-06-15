@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4bcf1909-8996-44b7-be35-b130ab03d12f",
+		"_postman_id": "0e497ece-a9a4-45c7-9aaa-e78780709a8a",
 		"name": "cloud-cdnd-c2-final",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,9 +9,15 @@
 			"name": "http://localhost:8082/filteredimage?image_url=https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "x_auth",
+						"value": "smartway",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "http://{{HOST}}/filteredimage?image_url=https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg",
+					"raw": "http://{{HOST}}/filteredimage?image_url=https://mundabor.files.wordpress.com/2017/10/kitten-1.jpg",
 					"protocol": "http",
 					"host": [
 						"{{HOST}}"
@@ -22,7 +28,7 @@
 					"query": [
 						{
 							"key": "image_url",
-							"value": "https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg"
+							"value": "https://mundabor.files.wordpress.com/2017/10/kitten-1.jpg"
 						}
 					]
 				}
@@ -34,7 +40,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "5887df52-1889-4e1f-82ee-054ab37b450a",
+				"id": "b2cbfebd-ecef-4c04-822f-ff6cd9a70b0a",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -44,7 +50,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "5e332dfe-c833-430b-b947-ab6c00311c28",
+				"id": "89f57f75-38c3-4834-b845-d569ac9e31b4",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -59,5 +65,6 @@
 			"value": "localhost:8082",
 			"type": "string"
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
