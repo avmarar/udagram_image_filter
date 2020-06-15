@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { filterImageFromURL, deleteLocalFiles } from "./util/util";
+import { config } from "./config/config";
 
 (async () => {
   // Init the Express application
@@ -29,9 +30,18 @@ import { filterImageFromURL, deleteLocalFiles } from "./util/util";
   /**************************************************************************** */
   app.get("/filteredimage", async (req, res) => {
     let { image_url } = req.query;
+    let token = req.header("x_auth");
+
+    if (!token || token != config.auth_token) {
+      return res
+        .status(401)
+        .send({ auth: false, message: "Invalid auth token" });
+    }
 
     if (!image_url) {
-      return res.status(422).send({ message: "Image URL is required" });
+      return res
+        .status(422)
+        .send({ auth: true, message: "Image URL is required" });
     }
 
     let filteredpath = await filterImageFromURL(image_url);
