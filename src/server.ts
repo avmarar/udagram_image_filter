@@ -1,7 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { filterImageFromURL, deleteLocalFiles } from "./util/util";
-import { config } from "./config/config";
 
 (async () => {
   // Init the Express application
@@ -12,6 +11,8 @@ import { config } from "./config/config";
 
   // Use the body parser middleware for post requests
   app.use(bodyParser.json());
+
+  const auth_token = process.env.AUTH_TOKEN;
 
   // @TODO1 IMPLEMENT A RESTFUL ENDPOINT
   // GET /filteredimage?image_url={{URL}}
@@ -30,9 +31,9 @@ import { config } from "./config/config";
   /**************************************************************************** */
   app.get("/filteredimage", async (req, res) => {
     let { image_url } = req.query;
-    let token = req.header("x_auth");
-
-    if (!token || token != config.auth_token) {
+    let token = req.headers.authorization;
+    
+    if (!token || token != auth_token) {
       return res
         .status(401)
         .send({ auth: false, message: "Invalid auth token" });
