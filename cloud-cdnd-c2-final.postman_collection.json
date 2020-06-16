@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "x_auth",
+						"key": "Authorization",
 						"value": "smartway",
 						"type": "text"
 					}
